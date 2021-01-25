@@ -4,7 +4,7 @@ version = "0.1.0"
 description = ""
 authors = ["Data-Wan <ustimenko.work@gmail.com>"]
 packages = [
-  { include = "gendiff" },
+  { include = "calculate_diff" },
 ]
 
 [tool.poetry.dependencies]
@@ -19,4 +19,4 @@ requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
-gendiff = "gendiff.scripts.gendiff:main"
+gendiff = "calculate_diff.scripts.gendiff:main"
