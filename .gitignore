@@ -4,4 +4,3 @@ dist/
 *.pyc
 .venv/
 .idea/
-/calculate_diff/tests/
