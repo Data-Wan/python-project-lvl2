@@ -44,7 +44,7 @@ def union_keys(dictionary1, dictionary2):
 
 
 def generate_diff(first_file, second_file):  # noqa: WPS210
-    """Generate string with difference of 2 files.json.
+    """Determine the difference of 2 json files.
 
     Args:
         first_file: dict
