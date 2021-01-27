@@ -4,6 +4,8 @@
 
 import json
 
+from calculate_diff.modules.parsing_data import parser
+
 
 def generate_value_diff(dict1, dict2, key):
     """Generate list with difference of 2 dict with 1 key.
@@ -54,10 +56,8 @@ def generate_diff(first_file, second_file):  # noqa: WPS210
     Returns:
         string with difference: str
     """
-    with open(first_file) as f1:
-        dictionary1 = json.load(f1)
-    with open(second_file) as f2:
-        dictionary2 = json.load(f2)
+    dictionary1 = parser(first_file)
+    dictionary2 = parser(second_file)
     all_keys = union_keys(dictionary1, dictionary2)
 
     output = ['{']
