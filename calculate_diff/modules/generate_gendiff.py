@@ -40,7 +40,8 @@ def union_keys(dictionary1, dictionary2):
         list with keys: list
 
     """
-    return set(dictionary1.keys()).union(set(dictionary2.keys()))
+    all_keys = set(dictionary1.keys()).union(set(dictionary2.keys()))
+    return sorted(all_keys)
 
 
 def generate_diff(first_file, second_file):  # noqa: WPS210
