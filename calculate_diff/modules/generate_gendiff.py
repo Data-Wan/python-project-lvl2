@@ -2,8 +2,6 @@
 
 """Module with functions for gendiff.py."""
 
-import json
-
 from calculate_diff.modules.parsing_data import parser
 
 

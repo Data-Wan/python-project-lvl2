@@ -8,5 +8,8 @@
 
 [![Test Coverage Codeclimate](https://api.codeclimate.com/v1/badges/a99a88d28ad37a79dbf6/test_coverage)](https://codeclimate.com/github/codeclimate/codeclimate/test_coverage)
 
-asciinema gendiff example
+asciinema gendiff json example
 <https://asciinema.org/a/A6WtrRaq88T96ZEP6jkCs4By9>
+
+asciinema gendiff YAML example
+https://asciinema.org/a/w6cfRi6uLCTFYJb3IoALuy6Qb
