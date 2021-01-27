@@ -8,6 +8,8 @@
 
 [![Test Coverage Codeclimate](https://api.codeclimate.com/v1/badges/a99a88d28ad37a79dbf6/test_coverage)](https://codeclimate.com/github/codeclimate/codeclimate/test_coverage)
 
+[![wemake-python-styleguide](https://img.shields.io/badge/style-wemake-000000.svg)](https://github.com/wemake-services/wemake-python-styleguide)
+
 asciinema gendiff json example
 <https://asciinema.org/a/A6WtrRaq88T96ZEP6jkCs4By9>
 
