@@ -5,6 +5,25 @@
 from calculate_diff.modules.parsing_data import parser
 
 
+def js_format_get(dictionary, key):
+    """Return value in js format.
+
+    Args:
+        dictionary: dict
+        key: any
+
+    Returns:
+        value: any
+    """
+    if dictionary.get(key) is True:
+        return 'true'
+    elif dictionary.get(key) is False:
+        return 'false'
+    elif dictionary.get(key) is None:
+        return 'null'
+    return dictionary.get(key)
+
+
 def generate_value_diff(dict1, dict2, key):
     """Generate list with difference of 2 dict with 1 key.
 
@@ -16,16 +35,17 @@ def generate_value_diff(dict1, dict2, key):
     Returns:
         list with difference: list
     """
+    template_str = '  {0} {1}: {2}'
     output = []
     if dict1.get(key, object) == object:
-        output.append('  + {0}: {1}'.format(key, dict2.get(key)))
+        output.append(template_str.format('+', key, js_format_get(dict2, key)))
     elif dict2.get(key, object) == object:
-        output.append('  - {0}: {1}'.format(key, dict1.get(key)))
+        output.append(template_str.format('-', key, js_format_get(dict1, key)))
     elif dict1.get(key) == dict2.get(key):
-        output.append('    {0}: {1}'.format(key, dict1.get(key)))
+        output.append(template_str.format(' ', key, js_format_get(dict1, key)))
     else:
-        output.append('  - {0}: {1}'.format(key, dict1.get(key)))
-        output.append('  + {0}: {1}'.format(key, dict2.get(key)))
+        output.append(template_str.format('-', key, js_format_get(dict1, key)))
+        output.append(template_str.format('+', key, js_format_get(dict2, key)))
     return output
 
 
