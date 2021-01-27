@@ -16,6 +16,6 @@ help:
 	poetry run gendiff --help
 
 test:
-	poetry run tests --cov=calculate_diff --cov-report xml tests/
+	poetry run pytest calculate_diff tests --cov=calculate_diff --cov-report xml
 
 .PHONY: install test lint selfcheck check build help

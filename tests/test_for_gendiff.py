@@ -12,4 +12,4 @@ example = """{
 
 
 def test_flat_files():
-    assert generate_diff('./tests/fixtures/file1.json', './tests/fixtures/file2.json') == example
+    assert generate_diff('tests/fixtures/file1.json', 'tests/fixtures/file2.json') == example
