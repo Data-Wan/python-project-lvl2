@@ -4,7 +4,7 @@
 
 import argparse
 
-from calculate_diff.modules.generate_gendiff import generate_diff
+from calculate_diff.modules.generate_diff import generate_diff
 
 parser = argparse.ArgumentParser()
 parser.add_argument('first_file', type=str)
