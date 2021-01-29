@@ -6,7 +6,7 @@
 
 [![Maintainability Codeclimate](https://api.codeclimate.com/v1/badges/a99a88d28ad37a79dbf6/maintainability)](https://codeclimate.com/github/codeclimate/codeclimate/maintainability)
 
-[![Test Coverage Codeclimate](https://api.codeclimate.com/v1/badges/a99a88d28ad37a79dbf6/test_coverage)](https://codeclimate.com/github/codeclimate/codeclimate/test_coverage)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/602b64c3c754b07a14fa/test_coverage)](https://codeclimate.com/github/Data-Wan/python-project-lvl2/test_coverage)
 
 [![wemake-python-styleguide](https://img.shields.io/badge/style-wemake-000000.svg)](https://github.com/wemake-services/wemake-python-styleguide)
 
