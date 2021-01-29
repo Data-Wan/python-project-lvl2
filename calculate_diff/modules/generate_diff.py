@@ -4,9 +4,10 @@
 
 from calculate_diff.modules.abstract_for_gendiff import gen_diff_dict
 from calculate_diff.modules.parsing_data import parser
+from calculate_diff.modules.stulish_funcs import stylish
 
 
-def generate_diff(first_file, second_file, formatter):  # noqa: WPS210
+def generate_diff(first_file, second_file, formatter=stylish):  # noqa: WPS210
     """Determine the difference of 2 json files.
 
     Args:
