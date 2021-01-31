@@ -5,7 +5,8 @@
 import argparse
 
 from calculate_diff.modules.generate_diff import generate_diff
-from calculate_diff.modules.stulish_funcs import stylish
+from calculate_diff.modules.plain_formatter import plain
+from calculate_diff.modules.stylish_funcs import stylish
 
 parser = argparse.ArgumentParser()
 parser.add_argument('first_file', type=str)
