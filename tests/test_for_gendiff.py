@@ -1,5 +1,8 @@
 """File for test gendiff."""
+import json
+
 from calculate_diff.modules.generate_diff import generate_diff, gen_diff_dict
+from calculate_diff.modules.jsonify_formatter import jsonify
 from calculate_diff.modules.plain_formatter import plain
 
 
@@ -26,3 +29,9 @@ def test_plain_output():
         example.seek(0)
         assert generate_diff('tests/fixtures/nested_yaml_file1.yml', 'tests/fixtures/nested_yaml_file2.yml',
                              plain) == example.read()
+
+
+def test_jsonify_output():
+    with open('tests/fixtures/result_for_jsonify.json') as example:
+        assert json.loads(generate_diff('tests/fixtures/nested_file1.json', 'tests/fixtures/nested_file2.json',
+                                        jsonify)) == json.load(example)

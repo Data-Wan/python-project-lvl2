@@ -1,6 +1,6 @@
 # -*- coding:utf-8 -*-
 
-"""Module with formatters."""
+"""Module with stylish formatter."""
 
 
 def stylish(iterable, replacer='  '):  # noqa: WPS210

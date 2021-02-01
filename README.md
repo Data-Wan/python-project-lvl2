@@ -16,5 +16,11 @@ asciinema gendiff json example
 asciinema gendiff YAML example
 <https://asciinema.org/a/w6cfRi6uLCTFYJb3IoALuy6Qb>
 
-asciinema gendiff nested files example
+asciinema gendiff nested files stylish output example
 <https://asciinema.org/a/ce2ezBaxTlG3suebNT0Rtjtfv>
+
+asciinema gendiff nested files plain output example
+<https://asciinema.org/a/l81cdCJPXIjEDtUPcegwwotko>
+
+asciinema gendiff nested files json output example
+<https://asciinema.org/a/Ci78hNpbmBEdRbf9NB4kijYcV>

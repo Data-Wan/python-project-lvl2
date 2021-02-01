@@ -3,9 +3,10 @@
 """Module with functions for gendiff.py."""
 
 from calculate_diff.modules.abstract_for_gendiff import gen_diff_dict
+from calculate_diff.modules.jsonify_formatter import jsonify  # noqa: F401
 from calculate_diff.modules.parsing_data import parser
 from calculate_diff.modules.plain_formatter import plain  # noqa: F401
-from calculate_diff.modules.stylish_funcs import stylish
+from calculate_diff.modules.stylish_formatter import stylish
 
 
 def generate_diff(first_file, second_file, formatter=stylish):  # noqa: WPS210
