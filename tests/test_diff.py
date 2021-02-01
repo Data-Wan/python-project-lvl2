@@ -1,7 +1,7 @@
 """File for test gendiff."""
 import json
 
-from gendiff.gendiff import generate_diff
+from gendiff.generate_diff import generate_diff
 from gendiff.modules.jsonify_formatter import jsonify
 from gendiff.modules.plain_formatter import plain
 

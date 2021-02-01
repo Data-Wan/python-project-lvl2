@@ -1,6 +1,6 @@
 # -*- coding:utf-8 -*-
 
-"""Module with functions for gendiff.py."""
+"""Module with functions for generate_diff.py."""
 
 from gendiff.modules.abstract_for_gendiff import gen_diff_dict
 from gendiff.modules.jsonify_formatter import jsonify  # noqa: F401
