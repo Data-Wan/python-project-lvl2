@@ -15,13 +15,11 @@ parser.add_argument('first_file', type=str)
 parser.add_argument('second_file', type=str)
 
 args = parser.parse_args()
-formatters = {'plain': plain, 'stylish': stylish, 'json': jsonify}
 
 
 def main():
     """Print generate diff for 2 json files."""
-    format_to_call = formatters[args.format]
-    print(generate_diff(args.first_file, args.second_file, format_to_call))
+    print(generate_diff(args.first_file, args.second_file, args.format))
 
 
 if __name__ == '__main__':

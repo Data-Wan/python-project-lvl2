@@ -2,8 +2,6 @@
 import json
 
 from gendiff.gendiff import generate_diff
-from gendiff.formatters.jsonify_formatter import jsonify
-from gendiff.formatters.plain_formatter import plain
 
 
 def test_flat_files():
@@ -23,15 +21,15 @@ def test_nested_files():
 
 def test_plain_output():
     with open('tests/fixtures/result_for_plain.txt') as example:
-        a = generate_diff('tests/fixtures/nested_file1.json', 'tests/fixtures/nested_file2.json', plain)
+        a = generate_diff('tests/fixtures/nested_file1.json', 'tests/fixtures/nested_file2.json', 'plain')
         b = example.read()
         assert a == b
         example.seek(0)
         assert generate_diff('tests/fixtures/nested_yaml_file1.yml', 'tests/fixtures/nested_yaml_file2.yml',
-                             plain) == example.read()
+                             'plain') == example.read()
 
 
 def test_jsonify_output():
     with open('tests/fixtures/result_for_jsonify.json') as example:
         assert json.loads(generate_diff('tests/fixtures/nested_file1.json', 'tests/fixtures/nested_file2.json',
-                                        jsonify)) == json.load(example)
+                                        'json')) == json.load(example)
