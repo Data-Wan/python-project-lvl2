@@ -1,12 +1,12 @@
 # -*- coding:utf-8 -*-
 
-"""Module with functions for generate_diff.py."""
+"""Module with main function."""
 
+from gendiff.formatters.jsonify_formatter import jsonify  # noqa: F401
+from gendiff.formatters.plain_formatter import plain  # noqa: F401
+from gendiff.formatters.stylish_formatter import stylish
 from gendiff.modules.abstract_for_gendiff import gen_diff_dict
-from gendiff.modules.jsonify_formatter import jsonify  # noqa: F401
 from gendiff.modules.parsing_data import parser
-from gendiff.modules.plain_formatter import plain  # noqa: F401
-from gendiff.modules.stylish_formatter import stylish
 
 
 def generate_diff(first_file, second_file, formatter=stylish):  # noqa: WPS210
