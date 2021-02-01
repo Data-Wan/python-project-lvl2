@@ -4,10 +4,10 @@
 
 import argparse
 
-from calculate_diff.modules.generate_diff import generate_diff
-from calculate_diff.modules.jsonify_formatter import jsonify  # noqa: F401
-from calculate_diff.modules.plain_formatter import plain  # noqa: F401
-from calculate_diff.modules.stylish_formatter import stylish
+from gendiff.generate_diff import generate_diff
+from gendiff.modules.jsonify_formatter import jsonify  # noqa: F401
+from gendiff.modules.plain_formatter import plain  # noqa: F401
+from gendiff.modules.stylish_formatter import stylish
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-f', '--format', default=stylish, help='set format of output')  # noqa: E501

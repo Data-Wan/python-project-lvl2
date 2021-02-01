@@ -1,9 +1,9 @@
 """File for test gendiff."""
 import json
 
-from calculate_diff.modules.generate_diff import generate_diff, gen_diff_dict
-from calculate_diff.modules.jsonify_formatter import jsonify
-from calculate_diff.modules.plain_formatter import plain
+from gendiff.generate_diff import generate_diff
+from gendiff.modules.jsonify_formatter import jsonify
+from gendiff.modules.plain_formatter import plain
 
 
 def test_flat_files():
