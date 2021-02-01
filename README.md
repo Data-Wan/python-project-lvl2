@@ -4,7 +4,7 @@
 
 [![Lint Status](https://github.com/Data-Wan/python-project-lvl2/workflows/.github/workflows/linter-check.yml/badge.svg)](https://github.com/Data-Wan/python-project-lvl2/actions)
 
-[![Maintainability Codeclimate](https://api.codeclimate.com/v1/badges/a99a88d28ad37a79dbf6/maintainability)](https://codeclimate.com/github/codeclimate/codeclimate/maintainability)
+[![Maintainability](https://api.codeclimate.com/v1/badges/602b64c3c754b07a14fa/maintainability)](https://codeclimate.com/github/Data-Wan/python-project-lvl2/maintainability)
 
 [![Test Coverage](https://api.codeclimate.com/v1/badges/602b64c3c754b07a14fa/test_coverage)](https://codeclimate.com/github/Data-Wan/python-project-lvl2/test_coverage)
 

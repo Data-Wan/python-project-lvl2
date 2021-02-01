@@ -25,3 +25,10 @@ jobs:
         run: |
           make lint
           make test
+      - name: Test & publish code coverage
+        uses: paambaati/codeclimate-action@v2.7.5
+        env:
+          CC_TEST_REPORTER_ID: ee0cd18472792164538d307f104bffaa80a72f2c69422464c206f506c475a733
+        with:
+          coverageCommand: poetry run coverage
+          debug: true
