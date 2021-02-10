@@ -37,7 +37,7 @@ def union_keys(dictionary1, dictionary2):
     return sorted(all_keys)
 
 
-def gen_diff_dict(dict1, dict2):
+def gen_diff_dict(dict1, dict2):  # noqa: WPS210, WPS231
     """Generate list with changes of 2 dictionaries.
 
     Args:
@@ -49,21 +49,40 @@ def gen_diff_dict(dict1, dict2):
     """
     list_with_changes = []
     all_keys = union_keys(dict1, dict2)
-
+    no_value = object()
     for key in all_keys:
-        old_value = js_format_get(dict1, key)
-        new_value = js_format_get(dict2, key)
+        old_value = dict1.get(key, no_value)
+        new_value = dict2.get(key, no_value)
         if isinstance(old_value, dict) and isinstance(new_value, dict):
             list_with_changes.append({
                 'name': key,
-                'type': 'nested',
+                'type': 'NESTED',
                 'children': gen_diff_dict(old_value, new_value),
             })
 
+        elif old_value == no_value:
+            list_with_changes.append({
+                'name': key,
+                'type': 'ADDED',
+                'new_value': new_value,
+            })
+        elif new_value == no_value:
+            list_with_changes.append({
+                'name': key,
+                'type': 'REMOVED',
+                'old_value': old_value,
+            })
+        elif new_value == old_value:
+            list_with_changes.append({
+                'name': key,
+                'type': 'UNCHANGED',
+                'new_value': new_value,
+            })
         else:
             list_with_changes.append({
                 'name': key,
-                'type': 'value',
-                'value': [old_value, new_value],
+                'type': 'CHANGED',
+                'new_value': new_value,
+                'old_value': old_value,
             })
     return list_with_changes

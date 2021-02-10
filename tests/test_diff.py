@@ -31,5 +31,7 @@ def test_plain_output():
 
 def test_jsonify_output():
     with open('tests/fixtures/result_for_jsonify.json') as example:
+        print('\n' + generate_diff('tests/fixtures/nested_file1.json', 'tests/fixtures/nested_file2.json',
+                            'json'))
         assert json.loads(generate_diff('tests/fixtures/nested_file1.json', 'tests/fixtures/nested_file2.json',
                                         'json')) == json.load(example)

@@ -2,11 +2,11 @@
 
 """Module with main function."""
 
-from gendiff.formatters.jsonify_formatter import jsonify  # noqa: F401
-from gendiff.formatters.plain_formatter import plain  # noqa: F401
-from gendiff.formatters.stylish_formatter import stylish
-from gendiff.modules.abstract_for_gendiff import gen_diff_dict
-from gendiff.modules.parsing_data import parser
+from pathlib import Path
+
+from gendiff import formatters
+from gendiff.abstract_for_gendiff import gen_diff_dict
+from gendiff.formatters.parsing_data import get_data
 
 
 def generate_diff(first_file, second_file, formatter='stylish'):  # noqa: WPS210
@@ -20,9 +20,15 @@ def generate_diff(first_file, second_file, formatter='stylish'):  # noqa: WPS210
     Returns:
         string with difference: str
     """
-    formatters = {'plain': plain, 'stylish': stylish, 'json': jsonify}
-    formatter = formatters.get(formatter)
-    dictionary1 = parser(first_file)
-    dictionary2 = parser(second_file)
+    all_formatters = {
+        'plain': formatters.plain,
+        'stylish': formatters.stylish,
+        'json': formatters.jsonify,
+    }
+    formatter = all_formatters.get(formatter)
+    with open(first_file) as f1:
+        dictionary1 = get_data(f1, Path(first_file).suffix)
+    with open(second_file) as f2:
+        dictionary2 = get_data(f2, Path(second_file).suffix)
     dict_with_changes = gen_diff_dict(dictionary1, dictionary2)
     return formatter(dict_with_changes)

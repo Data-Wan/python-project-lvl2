@@ -16,6 +16,6 @@ help:
 	poetry run gendiff --help
 
 test:
-	poetry run coverage
+	poetry run pytest
 
 .PHONY: install test lint selfcheck check build help
