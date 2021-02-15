@@ -1,37 +1,73 @@
 """File for test gendiff."""
 import json
+import pytest
 
 from gendiff.gendiff import generate_diff
 
 
-def test_flat_files():
-    with open('tests/fixtures/result_for_test_flate.txt') as example:
-        assert generate_diff('tests/fixtures/file1.json', 'tests/fixtures/file2.json') == example.read()
-        example.seek(0)
-        assert generate_diff('tests/fixtures/yaml_file1.yml', 'tests/fixtures/yaml_file2.yml') == example.read()
+@pytest.mark.parametrize("first_file_path, "
+                         "second_file_path, "
+                         "result_path",
+                         [
+                             ('tests/fixtures/file1.json',
+                              'tests/fixtures/file2.json',
+                              'tests/fixtures/result_for_test_flate.txt'),
+
+                             ('tests/fixtures/yaml_file1.yml',
+                              'tests/fixtures/yaml_file2.yml',
+                              'tests/fixtures/result_for_test_flate.txt'),
+
+                             ('tests/fixtures/nested_file1.json',
+                              'tests/fixtures/nested_file2.json',
+                              'tests/fixtures/result_for_test_nested.txt'),
+
+                             ('tests/fixtures/nested_yaml_file1.yml',
+                              'tests/fixtures/nested_yaml_file2.yml',
+                              'tests/fixtures/result_for_test_nested.txt')
+                         ])
+def test_default_output(first_file_path, second_file_path, result_path):
+    with open(result_path) as example:
+        input_data = generate_diff(first_file_path, second_file_path)
+        result = example.read()
+        assert input_data == result
 
 
-def test_nested_files():
-    with open('tests/fixtures/result_for_test_nested.txt') as example:
-        assert generate_diff('tests/fixtures/nested_file1.json', 'tests/fixtures/nested_file2.json') == example.read()
-        example.seek(0)
-        assert generate_diff('tests/fixtures/nested_yaml_file1.yml',
-                             'tests/fixtures/nested_yaml_file2.yml') == example.read()
+@pytest.mark.parametrize("first_file_path, second_file_path",
+                         [
+                             ('tests/fixtures/nested_file1.json',
+                              'tests/fixtures/nested_file2.json'),
+
+                             ('tests/fixtures/nested_yaml_file1.yml',
+                              'tests/fixtures/nested_yaml_file2.yml')
+                         ])
+@pytest.mark.parametrize("result_path, format_out",
+                         [
+                             ('tests/fixtures/result_for_plain.txt',
+                              'plain')
+                         ])  # plain output
+def test_formatted_output(first_file_path, second_file_path, format_out, result_path):
+    with open(result_path) as example:
+        input_data = generate_diff(first_file_path, second_file_path, format_out)
+        result = example.read()
+        assert input_data == result
 
 
-def test_plain_output():
-    with open('tests/fixtures/result_for_plain.txt') as example:
-        a = generate_diff('tests/fixtures/nested_file1.json', 'tests/fixtures/nested_file2.json', 'plain')
-        b = example.read()
-        assert a == b
-        example.seek(0)
-        assert generate_diff('tests/fixtures/nested_yaml_file1.yml', 'tests/fixtures/nested_yaml_file2.yml',
-                             'plain') == example.read()
+@pytest.mark.parametrize("first_file_path, second_file_path",
+                         [
+                             ('tests/fixtures/nested_file1.json',
+                              'tests/fixtures/nested_file2.json'),
 
-
-def test_jsonify_output():
-    with open('tests/fixtures/result_for_jsonify.json') as example:
-        print('\n' + generate_diff('tests/fixtures/nested_file1.json', 'tests/fixtures/nested_file2.json',
-                                   'json'))
-        assert json.loads(generate_diff('tests/fixtures/nested_file1.json', 'tests/fixtures/nested_file2.json',
-                                        'json')) == json.load(example)
+                             ('tests/fixtures/nested_yaml_file1.yml',
+                              'tests/fixtures/nested_yaml_file2.yml')
+                         ])
+@pytest.mark.parametrize("result_path, format_out",
+                         [
+                             ('tests/fixtures/result_for_jsonify.json',
+                              'json')
+                         ])  # json output
+def test_jsonify_output(first_file_path, second_file_path, format_out, result_path):
+    with open(result_path) as example:
+        input_data = json.loads(generate_diff(first_file_path, second_file_path,
+                                              format_out))
+        result = json.load(example)
+        assert input_data == result
