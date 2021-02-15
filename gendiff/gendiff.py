@@ -6,7 +6,7 @@ from pathlib import Path
 
 from gendiff import formatters
 from gendiff.abstract_for_gendiff import union_keys
-from gendiff.formatters.parsing_data import get_data
+from gendiff.parsing_data import get_data
 
 
 def generate_diff(first_file, second_file, formatter='stylish'):  # noqa: WPS210
