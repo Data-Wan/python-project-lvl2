@@ -1,7 +1,7 @@
 # -*- coding:utf-8 -*-
 
 """Module with stylish formatter."""
-from gendiff.abstract_for_gendiff import get_convert_js
+from gendiff.tools_for_gendiff import get_convert_js
 
 
 def stylish(iterable, replacer='  '):  # noqa: WPS210

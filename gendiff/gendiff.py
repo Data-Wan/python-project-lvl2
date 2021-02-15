@@ -5,7 +5,7 @@
 from pathlib import Path
 
 from gendiff import formatters
-from gendiff.abstract_for_gendiff import union_keys
+from gendiff.tools_for_gendiff import union_keys
 from gendiff.parsing_data import get_data
 
 
