@@ -1,7 +1,7 @@
 # -*- coding:utf-8 -*-
 
 """Module with plain formatter."""
-from gendiff.abstract_for_gendiff import js_format_get
+from gendiff.abstract_for_gendiff import get_convert_js
 
 
 def plain(iterable):  # noqa: WPS210
@@ -18,8 +18,8 @@ def plain(iterable):  # noqa: WPS210
         output = []
         for node in list_with_changes:
             name = path + node['name']
-            new_value = to_str(js_format_get(node, 'new_value'))
-            old_value = to_str(js_format_get(node, 'old_value'))
+            new_value = to_str(get_convert_js(node, 'new_value'))
+            old_value = to_str(get_convert_js(node, 'old_value'))
             type_of_node = node['type']
             if type_of_node == 'NESTED':
                 nested_lines = walk(node['children'], '{0}.'.format(name))

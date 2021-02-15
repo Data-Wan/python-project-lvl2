@@ -1,7 +1,7 @@
 # -*- coding:utf-8 -*-
 
 """Module with stylish formatter."""
-from gendiff.abstract_for_gendiff import js_format_get
+from gendiff.abstract_for_gendiff import get_convert_js
 
 
 def stylish(iterable, replacer='  '):  # noqa: WPS210
@@ -23,8 +23,8 @@ def stylish(iterable, replacer='  '):  # noqa: WPS210
 
         for node in list_with_changes:
             type_of_node = node.get('type')
-            old_value = js_format_get(node, 'old_value')
-            new_value = js_format_get(node, 'new_value')
+            old_value = get_convert_js(node, 'old_value')
+            new_value = get_convert_js(node, 'new_value')
             old_value = stringify_dict(old_value, depth + 1, replacer)
             new_value = stringify_dict(new_value, depth + 1, replacer)
             name = node.get('name')
