@@ -1,6 +1,6 @@
 # -*- coding:utf-8 -*-
 
-"""Module with abstract functions for generate_diff."""
+"""Module with tools (funcs) for generate_diff."""
 
 
 def get_convert_js(dictionary, key):
