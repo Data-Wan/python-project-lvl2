@@ -17,6 +17,11 @@ def plain(iterable):  # noqa: WPS210
     def walk(list_with_changes, path=''):  # noqa: WPS430, WPS210
         output = []
         for node in list_with_changes:
+            templates = {
+                'REMOVED': "Property '{0}' was removed",
+                'ADDED': "Property '{0}' was added with value: {2}",
+                'CHANGED': "Property '{0}' was updated. From {1} to {2}",
+            }
             name = path + node['name']
             new_value = to_str(get_convert_js(node, 'new_value'))
             old_value = to_str(get_convert_js(node, 'old_value'))
@@ -25,36 +30,11 @@ def plain(iterable):  # noqa: WPS210
                 nested_lines = walk(node['children'], '{0}.'.format(name))
                 output.append(nested_lines)
             elif type_of_node != 'UNCHANGED':
-                output.append(create_row(name, old_value, new_value, type_of_node))  # noqa: E501
+                output.append(templates.get(type_of_node).format(name, old_value, new_value))  # noqa: E501
 
         return '\n'.join(output)
 
     return walk(iterable)
-
-
-def create_row(name, old_value, new_value, type_of_node):
-    """Create a row with changes - plain format.
-
-    Args:
-        name: str
-        old_value: any
-        new_value: any
-        type_of_node: str
-
-    Returns:
-        right formatted string: str
-    """
-    removed_template = "Property '{0}' was removed"
-    added_template = "Property '{0}' was added with value: {1}"
-    changed_template = "Property '{0}' was updated. From {1} to {2}"
-    if type_of_node == 'REMOVED':
-        return removed_template.format(name)
-
-    elif type_of_node == 'ADDED':
-        return added_template.format(name, new_value)
-
-    elif type_of_node == 'CHANGED':
-        return changed_template.format(name, old_value, new_value)
 
 
 def is_nested(elem):
