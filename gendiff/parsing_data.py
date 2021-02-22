@@ -26,5 +26,3 @@ def get_data(data_from_file, file_format):
         return json.load(data_from_file)
     elif file_format == '.yml':
         return yaml.load(data_from_file, Loader=yaml.SafeLoader)
-    else:
-        print('Oops!  That was no valid file format.  Try again...')  # noqa: WPS421, E501

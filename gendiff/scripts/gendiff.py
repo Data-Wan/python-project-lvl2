@@ -14,7 +14,10 @@ args = parser.parse_args()
 
 def main():
     """Print generate diff for 2 json files."""
-    print(generate_diff(args.first_file, args.second_file, args.format))
+    try:
+        print(generate_diff(args.first_file, args.second_file, args.format))
+    except TypeError:
+        print('Oops!  That was no valid input.  Try again...')
 
 
 if __name__ == '__main__':
