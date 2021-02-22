@@ -6,7 +6,6 @@ from pathlib import Path
 
 from gendiff import formatters
 from gendiff.parsing_data import get_data
-from gendiff.tools_for_gendiff import union_keys
 
 
 def generate_diff(first_file, second_file, formatter='stylish'):  # noqa: WPS210
@@ -83,3 +82,18 @@ def gen_diff_dict(dict1, dict2):  # noqa: WPS210, WPS231
                 'old_value': old_value,
             })
     return difference
+
+
+def union_keys(dictionary1, dictionary2):
+    """Generate list with union of 2 dictionaries`s keys.
+
+    Args:
+        dictionary1: dict
+        dictionary2: dict
+
+    Returns:
+        list with sorted keys: list
+
+    """
+    all_keys = set(dictionary1.keys()).union(set(dictionary2.keys()))
+    return sorted(all_keys)

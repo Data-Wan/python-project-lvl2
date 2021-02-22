@@ -1,7 +1,6 @@
 # -*- coding:utf-8 -*-
 
 """Module with plain formatter."""
-from gendiff.tools_for_gendiff import get_convert_js
 
 
 def plain(iterable):  # noqa: WPS210
@@ -76,3 +75,22 @@ def to_str(elem):
     elif is_str(elem):
         return "'{0}'".format(elem)
     return elem
+
+
+def get_convert_js(dictionary, key):
+    """Return value in js format.
+
+    Args:
+        dictionary: dict
+        key: any
+
+    Returns:
+        value: any
+    """
+    if dictionary.get(key) is True:
+        return 'true'
+    elif dictionary.get(key) is False:
+        return 'false'
+    elif dictionary.get(key, object()) is None:
+        return 'null'
+    return dictionary.get(key)
