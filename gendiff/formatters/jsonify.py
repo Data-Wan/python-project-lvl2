@@ -4,14 +4,14 @@
 import json
 
 
-def jsonify(list_with_changes):  # noqa: WPS210
+def jsonify(difference):  # noqa: WPS210
     """
     Turn dictionary into text with json format.
 
     Args:
-        list_with_changes: dict
+        difference: dict
 
     Returns:
         str
     """
-    return json.dumps(list_with_changes)
+    return json.dumps(difference)
