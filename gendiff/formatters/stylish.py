@@ -28,6 +28,12 @@ def stylish(iterable, replacer='  '):  # noqa: WPS210
             old_value = stringify_dict(old_value, depth + 1, replacer)
             new_value = stringify_dict(new_value, depth + 1, replacer)
             name = node.get('name')
+            templates = {
+                'REMOVED': '{0}- {1}: {2}',
+                'ADDED': '{0}+ {1}: {3}',
+                'UNCHANGED': '{0}  {1}: {3}',
+                'CHANGED': '{0}- {1}: {2}\n{0}+ {1}: {3}',
+            }
             if node['type'] == 'NESTED':
                 nested_lines = walk(node['children'], depth + 1)
                 output.append(
@@ -35,7 +41,7 @@ def stylish(iterable, replacer='  '):  # noqa: WPS210
                 )
             else:
                 output.append(
-                    create_row(current_indent, name, old_value, new_value, type_of_node),  # noqa: E501
+                    templates.get(type_of_node).format(current_indent, name, old_value, new_value),  # noqa: E501
                 )
         output.append('{0}{1}'.format(replacer * (depth - 1), '}'))
         return '\n'.join(output)
@@ -64,31 +70,3 @@ def stringify_dict(collection, depth, replacer):  # noqa: WPS210
         ))
         output.insert(-1, row)
     return '\n'.join(output)
-
-
-def create_row(current_indent, name, old_value, new_value, type_of_node):
-    """Create a row with changes - stylish format.
-
-    Args:
-        current_indent: str
-        name: str
-        old_value: any
-        new_value: any
-        type_of_node: str
-
-    Returns:
-        right formatted string: str
-    """
-    str_removed = '{0}- {1}: {2}'.format(current_indent, name, old_value)
-    str_added = '{0}+ {1}: {2}'.format(current_indent, name, new_value)
-    if type_of_node == 'REMOVED':
-
-        return str_removed
-
-    elif type_of_node == 'ADDED':
-        return str_added
-
-    elif type_of_node == 'CHANGED':
-        return '{0}\n{1}'.format(str_removed, str_added)
-
-    return '{0}  {1}: {2}'.format(current_indent, name, new_value)
