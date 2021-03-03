@@ -4,7 +4,7 @@
 
 from pathlib import Path
 
-from gendiff import formatters
+from gendiff.formatters import all_formatters
 from gendiff.formatters.diff_dict import gen_diff_dict
 from gendiff.parsing_data import get_data
 
@@ -20,12 +20,8 @@ def generate_diff(first_file, second_file, formatter='stylish'):  # noqa: WPS210
     Returns:
         string with difference: str
     """
-    all_formatters = {
-        'plain': formatters.plain,
-        'stylish': formatters.stylish,
-        'json': formatters.jsonify,
-    }
     formatter = all_formatters.get(formatter)
+
     with open(first_file) as f1:
         dictionary1 = get_data(f1, Path(first_file).suffix)
     with open(second_file) as f2:
