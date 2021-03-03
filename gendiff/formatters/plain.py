@@ -17,8 +17,8 @@ def plain(iterable):  # noqa: WPS210
         output = []
         for node in list_with_changes:
             name = path + node['name']
-            new_value = to_str(get_convert_js(node, 'new_value'))
-            old_value = to_str(get_convert_js(node, 'old_value'))
+            new_value = to_str(node.get('new_value'))
+            old_value = to_str(node.get('old_value'))
             templates = {
                 'REMOVED': "Property '{0}' was removed".format(name),
                 'ADDED': "Property '{0}' was added with value: {2}",
@@ -36,31 +36,6 @@ def plain(iterable):  # noqa: WPS210
     return walk(iterable)
 
 
-def is_nested(elem):
-    """Check if elem nested or not.
-
-    Args:
-        elem: any
-
-    Returns:
-        bool: true == nested, false == not
-    """
-    return isinstance(elem, (dict, list, tuple, set))
-
-
-def is_str(elem):
-    """Check if elem string without some special values.
-
-    Args:
-        elem: any
-
-    Returns:
-        bool
-    """
-    not_special_value = elem not in {'null', 'true', 'false'}
-    return not_special_value and isinstance(elem, str)
-
-
 def to_str(elem):
     """Return value with js types check.
 
@@ -70,27 +45,13 @@ def to_str(elem):
     Returns:
         formatted string rows: str
     """
-    if is_nested(elem):
+    special_value = {True: 'true', False: 'false', None: 'null'}
+
+    if isinstance(elem, (dict, list, tuple, set)):
         return '[complex value]'
-    elif is_str(elem):
+
+    if elem in special_value.keys():
+        return special_value.get(elem)
+    if isinstance(elem, str):
         return "'{0}'".format(elem)
     return elem
-
-
-def get_convert_js(dictionary, key):
-    """Return value in js format.
-
-    Args:
-        dictionary: dict
-        key: any
-
-    Returns:
-        value: any
-    """
-    if dictionary.get(key) is True:
-        return 'true'
-    elif dictionary.get(key) is False:
-        return 'false'
-    elif dictionary.get(key, object()) is None:
-        return 'null'
-    return dictionary.get(key)

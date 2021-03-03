@@ -1,7 +1,6 @@
 # -*- coding:utf-8 -*-
 
 """Module with stylish formatter."""
-from gendiff.formatters.plain import get_convert_js
 
 
 def stylish(iterable, replacer='  '):  # noqa: WPS210
@@ -70,3 +69,22 @@ def stringify_dict(collection, depth, replacer):  # noqa: WPS210
         ))
         output.insert(-1, row)
     return '\n'.join(output)
+
+
+def get_convert_js(dictionary, key):
+    """Return value in js format.
+
+    Args:
+        dictionary: dict
+        key: any
+
+    Returns:
+        value: any
+    """
+    if dictionary.get(key) is True:
+        return 'true'
+    elif dictionary.get(key) is False:
+        return 'false'
+    elif dictionary.get(key, object()) is None:
+        return 'null'
+    return dictionary.get(key)
