@@ -45,13 +45,13 @@ def to_str(elem):
     Returns:
         formatted string rows: str
     """
-    special_value = {True: 'true', False: 'false', None: 'null'}
+    special_value = {'True': 'true', 'False': 'false', 'None': 'null'}
 
     if isinstance(elem, (dict, list, tuple, set)):
         return '[complex value]'
 
-    if elem in special_value.keys():
-        return special_value.get(elem)
+    if str(elem) in special_value.keys():
+        return special_value.get(str(elem))
     if isinstance(elem, str):
         return "'{0}'".format(elem)
     return elem
