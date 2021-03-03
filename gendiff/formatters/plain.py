@@ -17,8 +17,8 @@ def plain(iterable):  # noqa: WPS210
         output = []
         for node in list_with_changes:
             name = path + node['name']
-            new_value = to_str(node.get('new_value'))
-            old_value = to_str(node.get('old_value'))
+            new_value = to_str(node.get('new_value', object()))
+            old_value = to_str(node.get('old_value', object()))
             templates = {
                 'REMOVED': "Property '{0}' was removed".format(name),
                 'ADDED': "Property '{0}' was added with value: {2}",
